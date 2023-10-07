@@ -1,0 +1,23 @@
+name: Contatcs.app
+version: 0.1.0
+
+authors:
+  - Marcelo Lira <mlira@gmx.com>
+
+targets:
+  contacts.app:
+    main: src/app.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+  granite:
+    github: amberframework/granite
+  micrate:
+    github: juanedi/micrate
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+
+crystal: 1.8.2
+
+license: MIT

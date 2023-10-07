@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+  <style>
+    body {
+      font-family: Sans;
+    }
+    header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid gray;
+    }
+    header h1 {
+      text-transform: uppercase;
+    }
+    header h2 {
+      text-transform: capitalize;
+      font-weight: normal;
+    }
+    table {
+      border-collapse: collapse;
+      border-bottom: 1px solid black;
+    }
+    table thead {
+      text-align: left;
+    }
+    table thead tr th {
+      min-width: 120px;
+      border-bottom: 1px solid black;
+    }
+    table tbody tr td {
+      padding-right: 20px;
+    }
+    form.tool-bar {
+      display: table;
+      border: 1px solid lightgray;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    span.error {
+      color: red;
+    }
+  </style>
+  <title>Contact App</title>
+</head>
+<body>
+  <header>
+    <h1>Contacts.app</h1>
+    <h2>A demo contacts application</h2>
+  </header>
+  <main>
+    <%= content %>
+  </main>
+</body>
+</html>

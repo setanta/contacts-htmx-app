@@ -1,0 +1,14 @@
+-- +micrate Up
+CREATE TABLE IF NOT EXISTS contacts
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  first_name NVARCHAR(40) NOT NULL,
+  last_name NVARCHAR(20) NOT NULL,
+  email NVARCHAR(60) NOT NULL,
+  phone NVARCHAR(24),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- +micrate Down
+DROP TABLE contacts;
