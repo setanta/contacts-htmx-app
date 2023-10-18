@@ -68,14 +68,16 @@ post "/contacts/:contact_id/edit" do |context|
   end
 end
 
-post "/contacts/:contact_id/delete" do |context|
+delete "/contacts/:contact_id" do |context|
   contact = Contact.find(context.params.url["contact_id"])
   if contact.nil?
     context.response.status_code = 404
     "Contact #{context.params.url["contact_id"]} not found."
   else
     contact.destroy
-    context.redirect("/contacts")
+    # 303 (See Other) will redirect with a GET method,
+    # instead of the DELETE that would be reused in case of a 302.
+    context.redirect("/contacts", status_code: 303)
   end
 end
 
