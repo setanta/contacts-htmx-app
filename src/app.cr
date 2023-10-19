@@ -45,6 +45,12 @@ get "/contacts/:contact_id" do |context|
   end
 end
 
+get "/contacts/:contact_id/email" do |context|
+  contact = Contact.find(context.params.url["contact_id"]) || Contact.new
+  contact.email = context.params.query["email"]
+  contact.errors_for("email").join("<br/>") unless contact.valid?
+end
+
 get "/contacts/:contact_id/edit" do |context|
   contact = Contact.find(context.params.url["contact_id"])
   if contact.nil?
