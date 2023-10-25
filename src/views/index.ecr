@@ -4,17 +4,6 @@
   <input type="submit" value="Search"/>
 </form>
 
-<div>
-  <span style="float: right">
-    <%- if page > 1 -%>
-      <a href="/contacts?page=<%= page - 1 %><%= "&q=#{search}" unless search.empty? %>">Previous</a>
-    <%- end -%>
-    <%- if contacts.size == 10 -%>
-      <a href="/contacts?page=<%= page + 1 %><%= "&q=#{search}" unless search.empty? %>">Next</a>
-    <%- end -%>
-  </span>
-</div>
-
 <table>
   <thead>
   <tr>
@@ -35,6 +24,18 @@
       <td>
         <a href="/contacts/<%= contact.id %>/edit">Edit</a>
         <a href="/contacts/<%= contact.id %>">View</a>
+      </td>
+    </tr>
+  <%- end -%>
+  <%- if contacts.size == 10 -%>
+    <tr>
+      <td colspan="5" style="text-align: center; padding: 10px;">
+        <button hx-target="closest tr"
+                hx-swap="outerHTML"
+                hx-select="tbody > tr"
+                hx-get="/contacts?page=<%= page + 1 %><%= "&q=#{search}" unless search.empty? %>">
+          Load More
+        </button>
       </td>
     </tr>
   <%- end -%>
