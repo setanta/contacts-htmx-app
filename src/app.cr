@@ -4,20 +4,28 @@ Granite::Connections << Granite::Adapter::Sqlite.new(name: "contacts_app_db", ur
 require "kemal"
 require "./models/contact"
 
+PAGE_SIZE = 10
+
 get "/" do |context|
   context.redirect("/contacts")
 end
 
 get "/contacts" do |context|
-  search = context.params.query["q"]?
-  contacts = if search.nil? || search.strip == ""
-               Contact.order(first_name: :asc)
-             else
-               Contact.where(:first_name, :like, "%#{search}%")
-                 .or(:last_name, :like, "%#{search}%")
-                 .or(:email, :like, "%#{search}%")
-                 .order(first_name: :asc)
-             end
+  search = (context.params.query["q"]? || "").strip
+  page = context.params.query["page"]?.try(&.to_i?) || 1
+  contacts_query = Contact.order(first_name: :asc)
+  if !search.empty?
+    contacts_query = contacts_query.where(:first_name, :like, "%#{search}%")
+      .or(:last_name, :like, "%#{search}%")
+      .or(:email, :like, "%#{search}%")
+  end
+  # TODO: contacts_query counts all rows in the Contact model,
+  # instead of the rows in the query. Mapping them to Crystal objects
+  # is a workaround, but there should be a way to count just the
+  # entries returned by the query.
+  contacts = contacts_query.offset((page - 1) * PAGE_SIZE)
+    .limit(PAGE_SIZE)
+    .map { |contact| contact }
   render("#{__DIR__}/views/index.ecr", "#{__DIR__}/views/layout.ecr")
 end
 

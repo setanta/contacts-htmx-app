@@ -4,6 +4,17 @@
   <input type="submit" value="Search"/>
 </form>
 
+<div>
+  <span style="float: right">
+    <%- if page > 1 -%>
+      <a href="/contacts?page=<%= page - 1 %><%= "&q=#{search}" unless search.empty? %>">Previous</a>
+    <%- end -%>
+    <%- if contacts.size == 10 -%>
+      <a href="/contacts?page=<%= page + 1 %><%= "&q=#{search}" unless search.empty? %>">Next</a>
+    <%- end -%>
+  </span>
+</div>
+
 <table>
   <thead>
   <tr>
