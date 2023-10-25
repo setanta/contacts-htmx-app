@@ -1,0 +1,47 @@
+body {
+  font-family: Sans;
+}
+
+header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray;
+}
+
+header h1 {
+  text-transform: uppercase;
+}
+
+header h2 {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+  border-bottom: 1px solid black;
+}
+
+table thead {
+  text-align: left;
+}
+
+table thead tr th {
+  min-width: 120px;
+  border-bottom: 1px solid black;
+}
+
+table tbody tr td {
+  padding-right: 20px;
+}
+
+form.tool-bar {
+  display: table;
+  border: 1px solid lightgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+span.error {
+  color: red;
+}
