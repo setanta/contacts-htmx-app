@@ -1,0 +1,24 @@
+<%- contacts.each do |contact| -%>
+  <tr>
+    <td><%= contact.first_name %></td>
+    <td><%= contact.last_name %></td>
+    <td><%= contact.phone %></td>
+    <td><%= contact.email %></td>
+    <td>
+      <a href="/contacts/<%= contact.id %>/edit">Edit</a>
+      <a href="/contacts/<%= contact.id %>">View</a>
+    </td>
+  </tr>
+<%- end -%>
+<%- if contacts.size == 10 -%>
+  <tr>
+    <td colspan="5" style="text-align: center; padding: 10px;">
+      <button hx-target="closest tr"
+              hx-swap="outerHTML"
+              hx-select="tbody > tr"
+              hx-get="/contacts?page=<%= page + 1 %><%= "&q=#{search}" unless search.empty? %>">
+        Load More
+      </button>
+    </td>
+  </tr>
+<%- end -%>

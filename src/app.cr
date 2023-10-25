@@ -26,7 +26,12 @@ get "/contacts" do |context|
   contacts = contacts_query.offset((page - 1) * PAGE_SIZE)
     .limit(PAGE_SIZE)
     .map { |contact| contact }
-  render("#{__DIR__}/views/index.ecr", "#{__DIR__}/views/layout.ecr")
+  rows = render("#{__DIR__}/views/rows.ecr")
+  if context.request.headers["HX-Trigger"]? == "search"
+    rows
+  else
+    render("#{__DIR__}/views/index.ecr", "#{__DIR__}/views/layout.ecr")
+  end
 end
 
 get "/contacts/new" do |context|
