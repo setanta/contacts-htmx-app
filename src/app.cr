@@ -98,9 +98,13 @@ delete "/contacts/:contact_id" do |context|
     "Contact #{context.params.url["contact_id"]} not found."
   else
     contact.destroy
-    # 303 (See Other) will redirect with a GET method,
-    # instead of the DELETE that would be reused in case of a 302.
-    context.redirect("/contacts", status_code: 303)
+    if context.request.headers["HX-Trigger"]? == "delete-btn"
+      # 303 (See Other) will redirect with a GET method,
+      # instead of the DELETE that would be reused in case of a 302.
+      context.redirect("/contacts", status_code: 303)
+    else
+      ""
+    end
   end
 end
 
