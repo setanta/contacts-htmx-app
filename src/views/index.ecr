@@ -1,6 +1,11 @@
 <form action="/contacts" method="get" class="tool-bar">
   <label for="search">Search Term</label>
-  <input id="search" type="search" name="q" value="<%= search %>"/>
+  <input id="search" type="search" name="q" value="<%= search %>"
+         hx-get="/contacts"
+         hx-trigger="search, keyup delay:400ms changed"
+         hx-target="tbody"
+         hx-select="tbody tr"
+         hx-push-url="true"/>
   <input type="submit" value="Search"/>
 </form>
 
