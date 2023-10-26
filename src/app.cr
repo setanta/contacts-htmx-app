@@ -34,6 +34,15 @@ get "/contacts" do |context|
   end
 end
 
+delete "/contacts" do |context|
+  contact_ids = context.params.body.map do |key, value|
+    next unless key == "selected_contact_ids"
+    value.to_i
+  end.compact
+  Contact.where(id: contact_ids).delete
+  context.redirect(context.request.headers.fetch("HX-Current-URL", "/contacts"), status_code: 303)
+end
+
 get "/contacts/count" do |context|
   "(#{Contact.count} total Contacts)"
 end

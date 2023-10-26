@@ -25,8 +25,11 @@ table thead {
   text-align: left;
 }
 
-table thead tr th {
+table thead tr th:not(:first-child) {
   min-width: 120px;
+}
+
+table thead tr th {
   border-bottom: 1px solid black;
 }
 
