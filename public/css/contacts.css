@@ -50,3 +50,8 @@ img.htmx-indicator {
   height: 22px;
   padding-left: 10px;
 }
+
+tr.htmx-swapping {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
