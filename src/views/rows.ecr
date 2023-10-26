@@ -17,9 +17,9 @@
 <%- if contacts.size == 10 -%>
   <tr>
     <td colspan="5" style="text-align: center; padding: 10px;">
-      <button hx-target="closest tr"
+      <button id="load-more-btn"
+              hx-target="closest tr"
               hx-swap="outerHTML"
-              hx-select="tbody > tr"
               hx-get="/contacts?page=<%= page + 1 %><%= "&q=#{search}" unless search.empty? %>">
         Load More
       </button>

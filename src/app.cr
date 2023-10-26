@@ -27,7 +27,7 @@ get "/contacts" do |context|
     .limit(PAGE_SIZE)
     .map { |contact| contact }
   rows = render("#{__DIR__}/views/rows.ecr")
-  if context.request.headers["HX-Trigger"]? == "search"
+  if %w(search load-more-btn).includes?(context.request.headers["HX-Trigger"]?)
     rows
   else
     render("#{__DIR__}/views/index.ecr", "#{__DIR__}/views/layout.ecr")
