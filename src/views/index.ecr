@@ -8,7 +8,7 @@
          hx-push-url="true"/>
   <img id="spinner"
        class="htmx-indicator"
-       style="height: 22px; float: inline-end; padding-left: 10px;"
+       style="float: inline-end;"
        src="/images/spinning-circles.svg"
        alt="Request In Flight..."/>
   <input type="submit" value="Search"/>
@@ -29,5 +29,8 @@
   </tbody>
 </table>
 <p>
-  <a href="/contacts/new">Add Contact</a> <span>(<%= Contact.count %> total Contacts)</span>
+  <a href="/contacts/new">Add Contact</a>
+  <span hx-get="/contacts/count" hx-trigger="revealed">
+    <img class="htmx-indicator" src="/images/spinning-circles.svg"/>
+  </span>
 </p>

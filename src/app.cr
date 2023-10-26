@@ -34,6 +34,10 @@ get "/contacts" do |context|
   end
 end
 
+get "/contacts/count" do |context|
+  "(#{Contact.count} total Contacts)"
+end
+
 get "/contacts/new" do |context|
   contact = Contact.new
   render("#{__DIR__}/views/new.ecr", "#{__DIR__}/views/layout.ecr")
